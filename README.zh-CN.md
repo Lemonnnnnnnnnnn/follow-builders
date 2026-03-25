@@ -10,6 +10,7 @@
 
 每日或每周推送到你常用的通讯工具（Telegram、Discord、WhatsApp 等），包含：
 
+- AI 公司官方博客的完整文章（Anthropic Engineering、Claude Blog）
 - 顶级 AI 播客新节目的精华摘要
 - 25 位精选 AI 建造者在 X/Twitter 上的关键观点和洞察
 - 所有原始内容的链接
@@ -51,12 +52,17 @@ Skill 使用纯文本 prompt 文件来控制内容的摘要方式。你可以通
 编辑 `prompts/` 文件夹中的文件：
 - `summarize-podcast.md` — 播客节目的摘要方式
 - `summarize-tweets.md` — X/Twitter 帖子的摘要方式
+- `summarize-blogs.md` — 博客文章的摘要方式
 - `digest-intro.md` — 整体摘要的格式和语气
 - `translate.md` — 英文内容翻译为中文的方式
 
 这些都是纯文本指令，不是代码。修改后下次推送即生效。
 
 ## 默认信息源
+
+### 官方博客（2个）
+- [Anthropic Engineering](https://www.anthropic.com/engineering) — Anthropic 团队的技术深度文章
+- [Claude Blog](https://claude.com/blog) — Claude 的产品公告与更新
 
 ### 播客（5个）
 - [Latent Space](https://www.youtube.com/@LatentSpacePod)
@@ -91,11 +97,11 @@ cd ~/.claude/skills/follow-builders/scripts && npm install
 - 一个 AI agent（OpenClaw、Claude Code 或类似工具）
 - 网络连接（用于获取中心化 feed）
 
-仅此而已。不需要任何 API key。所有内容（YouTube 字幕 + X/Twitter 帖子）由中心化服务每日抓取更新。
+仅此而已。不需要任何 API key。所有内容（博客文章 + YouTube 字幕 + X/Twitter 帖子）由中心化服务每日抓取更新。
 
 ## 工作原理
 
-1. 中心化 feed 每日更新，抓取所有信息源的最新内容（YouTube 字幕通过 Supadata，X/Twitter 通过官方 API）
+1. 中心化 feed 每日更新，抓取所有信息源的最新内容（博客文章通过网页抓取，YouTube 字幕通过 Supadata，X/Twitter 通过官方 API）
 2. 你的 agent 获取 feed——一次 HTTP 请求，不需要 API key
 3. 你的 agent 根据你的偏好将原始内容重新混编为易消化的摘要
 4. 摘要推送到你的通讯工具（或直接在聊天中显示）
@@ -106,7 +112,7 @@ cd ~/.claude/skills/follow-builders/scripts && npm install
 
 - 不发送任何 API key——所有内容由中心化服务获取
 - 如果你使用 Telegram/邮件推送，相关 key 仅存储在本地 `~/.follow-builders/.env`
-- Skill 只读取公开内容（公开的 YouTube 视频和 X 帖子）
+- Skill 只读取公开内容（公开的博客文章、YouTube 视频和 X 帖子）
 - 你的配置、偏好和阅读记录都保留在你自己的设备上
 
 ## 许可证

@@ -14,6 +14,7 @@ influencers who regurgitate information.
 A daily or weekly digest delivered to your preferred messaging app (Telegram, Discord,
 WhatsApp, etc.) with:
 
+- Full articles from official AI company blogs (Anthropic Engineering, Claude Blog)
 - Summaries of new podcast episodes from top AI podcasts
 - Key posts and insights from 25 curated AI builders on X/Twitter
 - Links to all original content
@@ -58,12 +59,17 @@ insights," "Use a more casual tone." The agent updates the prompts for you.
 Edit the files in the `prompts/` folder:
 - `summarize-podcast.md` — how podcast episodes are summarized
 - `summarize-tweets.md` — how X/Twitter posts are summarized
+- `summarize-blogs.md` — how blog posts are summarized
 - `digest-intro.md` — the overall digest format and tone
 - `translate.md` — how English content is translated to Chinese
 
 These are plain English instructions, not code. Changes take effect on the next digest.
 
 ## Default Sources
+
+### Official Blogs (2)
+- [Anthropic Engineering](https://www.anthropic.com/engineering) — technical deep-dives from the Anthropic team
+- [Claude Blog](https://claude.com/blog) — product announcements and updates from Claude
 
 ### Podcasts (5)
 - [Latent Space](https://www.youtube.com/@LatentSpacePod)
@@ -98,13 +104,13 @@ cd ~/.claude/skills/follow-builders/scripts && npm install
 - An AI agent (OpenClaw, Claude Code, or similar)
 - Internet connection (to fetch the central feed)
 
-That's it. No API keys needed. All content (YouTube transcripts + X/Twitter posts)
+That's it. No API keys needed. All content (blog articles + YouTube transcripts + X/Twitter posts)
 is fetched centrally and updated daily.
 
 ## How It Works
 
 1. A central feed is updated daily with the latest content from all sources
-   (YouTube transcripts via Supadata, X/Twitter via official API)
+   (blog articles via web scraping, YouTube transcripts via Supadata, X/Twitter via official API)
 2. Your agent fetches the feed — one HTTP request, no API keys
 3. Your agent remixes the raw content into a digestible summary using your preferences
 4. The digest is delivered to your messaging app (or shown in-chat)
@@ -115,7 +121,7 @@ See [examples/sample-digest.md](examples/sample-digest.md) for what the output l
 
 - No API keys are sent anywhere — all content is fetched centrally
 - If you use Telegram/email delivery, those keys are stored locally in `~/.follow-builders/.env`
-- The skill only reads public content (public YouTube videos, public X posts)
+- The skill only reads public content (public blog posts, public YouTube videos, public X posts)
 - Your configuration, preferences, and reading history stay on your machine
 
 ## License
