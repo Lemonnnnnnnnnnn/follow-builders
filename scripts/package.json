@@ -8,6 +8,7 @@
     "prepare-digest": "node prepare-digest.js"
   },
   "dependencies": {
+    "dotenv": "^17.4.2",
     "proper-lockfile": "^4.1.0"
   }
 }

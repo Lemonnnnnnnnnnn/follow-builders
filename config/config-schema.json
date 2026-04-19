@@ -35,6 +35,27 @@
       "type": "boolean",
       "default": false,
       "description": "Whether the user has completed initial setup"
+    },
+    "delivery": {
+      "type": "object",
+      "default": {
+        "method": "stdout"
+      },
+      "description": "Where to send the finished digest",
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": ["stdout", "telegram"],
+          "default": "stdout",
+          "description": "Delivery channel for the finished digest"
+        },
+        "chatId": {
+          "type": ["string", "number"],
+          "description": "Telegram chat ID used when method is telegram"
+        }
+      },
+      "required": ["method"],
+      "additionalProperties": true
     }
   }
 }
