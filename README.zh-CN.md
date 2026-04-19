@@ -79,11 +79,11 @@ Skill 使用纯文本 prompt 文件来控制内容的摘要方式。你可以通
 ### ZeroClaw
 ```bash
 # 从本地 checkout 安装
-git clone https://github.com/zarazhangrui/follow-builders.git ~/.zeroclaw/workspace/skills/follow-builders
+git clone https://github.com/Lemonnnnnnnnnnn/follow-builders ~/.zeroclaw/workspace/skills/follow-builders
 cd ~/.zeroclaw/workspace/skills/follow-builders/scripts && npm install
 
 # 或通过 ZeroClaw 安装
-zeroclaw skills install https://github.com/zarazhangrui/follow-builders.git
+zeroclaw skills install https://github.com/Lemonnnnnnnnnnn/follow-builders
 ```
 
 ## 系统要求
