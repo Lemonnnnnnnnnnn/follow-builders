@@ -18,17 +18,16 @@
 
 ## 快速开始
 
-1. 在你的 AI agent 中安装此 skill（OpenClaw 或 Claude Code）
+1. 在 ZeroClaw 中安装此 skill
 2. 输入 "set up follow builders" 或执行 `/follow-builders`
 3. Agent 会以对话方式引导你完成设置——不需要手动编辑任何配置文件
 
 Agent 会询问你：
 - 推送频率（每日或每周）和时间
 - 语言偏好
-- 推送方式（Telegram、邮件或直接在聊天中显示）
 
 不需要任何 API key——所有内容由中心化服务统一抓取。
-设置完成后，你的第一期摘要会立即推送。
+设置完成后，你的第一期摘要会立即发送到当前 ZeroClaw channel。
 
 ## 修改设置
 
@@ -77,25 +76,20 @@ Skill 使用纯文本 prompt 文件来控制内容的摘要方式。你可以通
 
 ## 安装
 
-### OpenClaw
+### ZeroClaw
 ```bash
-# 从 ClawhHub 安装（即将上线）
-clawhub install follow-builders
+# 从本地 checkout 安装
+git clone https://github.com/zarazhangrui/follow-builders.git ~/.zeroclaw/workspace/skills/follow-builders
+cd ~/.zeroclaw/workspace/skills/follow-builders/scripts && npm install
 
-# 或手动安装
-git clone https://github.com/zarazhangrui/follow-builders.git ~/skills/follow-builders
-cd ~/skills/follow-builders/scripts && npm install
-```
-
-### Claude Code
-```bash
-git clone https://github.com/zarazhangrui/follow-builders.git ~/.claude/skills/follow-builders
-cd ~/.claude/skills/follow-builders/scripts && npm install
+# 或通过 ZeroClaw 安装
+zeroclaw skills install https://github.com/zarazhangrui/follow-builders.git
 ```
 
 ## 系统要求
 
-- 一个 AI agent（OpenClaw、Claude Code 或类似工具）
+- ZeroClaw
+- Node.js 和 npm（用于运行 feed 准备脚本）
 - 网络连接（用于获取中心化 feed）
 
 仅此而已。不需要任何 API key。所有内容（博客文章 + YouTube 字幕 + X/Twitter 帖子）由中心化服务每日抓取更新。
@@ -103,16 +97,16 @@ cd ~/.claude/skills/follow-builders/scripts && npm install
 ## 工作原理
 
 1. 中心化 feed 每日更新，抓取所有信息源的最新内容（博客文章通过网页抓取，YouTube 字幕通过 Supadata，X/Twitter 通过官方 API）
-2. 你的 agent 获取 feed——一次 HTTP 请求，不需要 API key
-3. 你的 agent 根据你的偏好将原始内容重新混编为易消化的摘要
-4. 摘要推送到你的通讯工具（或直接在聊天中显示）
+2. ZeroClaw 获取 feed——一次 HTTP 请求，不需要 API key
+3. ZeroClaw 根据你的偏好将原始内容重新混编为易消化的摘要
+4. 摘要通过当前 ZeroClaw channel 发送
 
 查看 [examples/sample-digest.md](examples/sample-digest.md) 了解输出示例。
 
 ## 隐私
 
-- 不发送任何 API key——所有内容由中心化服务获取
-- 如果你使用 Telegram/邮件推送，相关 key 仅存储在本地 `~/.follow-builders/.env`
+- 此 skill 不发送任何 API key——所有内容由中心化服务获取
+- Channel 凭据由 ZeroClaw 管理，不由此 skill 管理
 - Skill 只读取公开内容（公开的博客文章、YouTube 视频和 X 帖子）
 - 你的配置、偏好和阅读记录都保留在你自己的设备上
 

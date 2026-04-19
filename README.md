@@ -22,21 +22,20 @@ WhatsApp, etc.) with:
 
 ## Quick Start
 
-1. Install the skill in your agent (OpenClaw or Claude Code)
+1. Install the skill in ZeroClaw
 2. Say "set up follow builders" or invoke `/follow-builders`
 3. The agent walks you through setup conversationally — no config files to edit
 
 The agent will ask you:
 - How often you want your digest (daily or weekly) and what time
 - What language you prefer
-- How you want it delivered (Telegram, email, or in-chat)
 
 No API keys needed — all content is fetched centrally.
-Your first digest arrives immediately after setup.
+Your first digest is sent in your current ZeroClaw channel immediately after setup.
 
 ## Changing Settings
 
-Your delivery preferences are configurable through conversation. Just tell your agent:
+Your digest preferences are configurable through conversation. Just tell your agent:
 
 - "Switch to weekly digests on Monday mornings"
 - "Change language to Chinese"
@@ -84,25 +83,20 @@ These are plain English instructions, not code. Changes take effect on the next 
 
 ## Installation
 
-### OpenClaw
+### ZeroClaw
 ```bash
-# From ClawhHub (coming soon)
-clawhub install follow-builders
+# Install from a local checkout
+git clone https://github.com/zarazhangrui/follow-builders.git ~/.zeroclaw/workspace/skills/follow-builders
+cd ~/.zeroclaw/workspace/skills/follow-builders/scripts && npm install
 
-# Or manually
-git clone https://github.com/zarazhangrui/follow-builders.git ~/skills/follow-builders
-cd ~/skills/follow-builders/scripts && npm install
-```
-
-### Claude Code
-```bash
-git clone https://github.com/zarazhangrui/follow-builders.git ~/.claude/skills/follow-builders
-cd ~/.claude/skills/follow-builders/scripts && npm install
+# Or install through ZeroClaw
+zeroclaw skills install https://github.com/zarazhangrui/follow-builders.git
 ```
 
 ## Requirements
 
-- An AI agent (OpenClaw, Claude Code, or similar)
+- ZeroClaw
+- Node.js and npm for the feed preparation scripts
 - Internet connection (to fetch the central feed)
 
 That's it. No API keys needed. All content (blog articles + YouTube transcripts + X/Twitter posts)
@@ -112,20 +106,19 @@ is fetched centrally and updated daily.
 
 1. A central feed is updated daily with the latest content from all sources
    (blog articles via web scraping, YouTube transcripts via Supadata, X/Twitter via official API)
-2. Your agent fetches the feed — one HTTP request, no API keys
-3. Your agent remixes the raw content into a digestible summary using your preferences
-4. The digest is delivered to your messaging app (or shown in-chat)
+2. ZeroClaw fetches the feed — one HTTP request, no API keys
+3. ZeroClaw remixes the raw content into a digestible summary using your preferences
+4. The digest is sent through your current ZeroClaw channel
 
 See [examples/sample-digest.md](examples/sample-digest.md) for what the output looks like.
 
 ## Privacy
 
-- No API keys are sent anywhere — all content is fetched centrally
-- If you use Telegram/email delivery, those keys are stored locally in `~/.follow-builders/.env`
+- No API keys are sent anywhere by this skill — all content is fetched centrally
+- Channel credentials are managed by ZeroClaw, not by this skill
 - The skill only reads public content (public blog posts, public YouTube videos, public X posts)
 - Your configuration, preferences, and reading history stay on your machine
 
 ## License
 
 MIT
-

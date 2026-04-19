@@ -6,7 +6,7 @@
 // Gathers everything the LLM needs to produce a digest:
 // - Fetches the central feeds (tweets + podcasts)
 // - Fetches the latest prompts from GitHub
-// - Reads the user's config (language, delivery method)
+// - Reads the user's config (language and schedule preferences)
 // - Outputs a single JSON blob to stdout
 //
 // The LLM's ONLY job is to read this JSON, remix the content, and output
@@ -61,8 +61,7 @@ async function main() {
   // 1. Read user config
   let config = {
     language: 'en',
-    frequency: 'daily',
-    delivery: { method: 'stdout' }
+    frequency: 'daily'
   };
   if (existsSync(CONFIG_PATH)) {
     try {
@@ -128,8 +127,7 @@ async function main() {
     // User preferences
     config: {
       language: config.language || 'en',
-      frequency: config.frequency || 'daily',
-      delivery: config.delivery || { method: 'stdout' }
+      frequency: config.frequency || 'daily'
     },
 
     // Content to remix
